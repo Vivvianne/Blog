@@ -30,6 +30,23 @@ class Post(db.Model):
 
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
+    
+class Comments(db.Model):
+    
+    id = db.Column(db. Integer, primary_key=True)
+    opinion = db.Column(db.String(255))
+    time_posted = db.Column(db.DateTime, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    pitch_id = db.Column(db.Integer, db.ForeignKey("blog.id"))
+    
+    def save_comment(self):
+        '''
+        Save the Comments/comments per pitch
+        '''
+        db.session.add(self)
+        db.session.commit()
+    
+
 
 posts = [
     {
