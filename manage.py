@@ -1,17 +1,13 @@
 from datetime import datetime
 from flask import Flask, render_template, url_for, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
-#from forms import RegistrationForm, LoginForm
-from  flask_migrate import Migrate, MigrateCommand
+from forms import RegistrationForm, LoginForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
-app.config['SQLACHEMY_DATABASE_URI'] ='postgresql+psycopg2://nkimani:her1234@127.0.0.1/blog'
-
-# migrate = Migrate(app,db)
-#manager.add_command('db',MigrateCommand)
-
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -23,8 +19,8 @@ class User(db.Model):
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
-    
-    
+
+
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
@@ -34,22 +30,6 @@ class Post(db.Model):
 
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
-    
-class Comments(db.Model):
-    
-    id = db.Column(db. Integer, primary_key=True)
-    opinion = db.Column(db.String(255))
-    time_posted = db.Column(db.DateTime, default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-    pitch_id = db.Column(db.Integer, db.ForeignKey("blog.id"))
-    
-    def save_comment(self):
-        '''
-        Save the Comments/comments per pitch
-        '''
-        db.session.add(self)
-        db.session.commit()
-    
 
 
 posts = [
