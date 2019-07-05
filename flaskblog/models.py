@@ -1,5 +1,6 @@
 from datetime import datetime
-from manage import db
+from flaskblog import db
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
