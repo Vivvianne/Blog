@@ -6,7 +6,7 @@ from flaskblog.models import User, Post
 
 posts = [
     {
-        'author': 'Corey Schafer',
+        'author': 'John Doe',
         'title': 'Blog Post 1',
         'content': 'First post content',
         'date_posted': 'April 20, 2018'
@@ -38,7 +38,7 @@ def register():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(username=form.username.data, email=form.email.data, password=hashed_password)
         db.session.add(user)
-        db.session.commit()
+        #db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
