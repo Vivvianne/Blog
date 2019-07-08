@@ -4,3 +4,6 @@ export MAIL_USERNAME = 'ndiahav@gmail.com'
 export MAIL_PASSWORD = 'her1234'
 
 python3.6 manage.py server
+
+# Flask-Bcrypt==0.7.1
+# bcrypt==3.1.7
