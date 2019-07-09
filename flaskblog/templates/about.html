@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
 <div class=content>
+    <h1>About</h1>
     <p> This is a site where you can air your views on anything.</p>
-
+    <div>
+        <h2>Trending Quotes</h2>
+        {{ quotes.quote }}
+        <cite title="Source Title">{{ quotes.author }}</cite>
+    </div>
+</div>
 
 {% endblock content %}

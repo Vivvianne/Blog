@@ -1,5 +1,6 @@
 from flask import render_template, request, Blueprint
 from flaskblog.models import Post
+from flaskblog.requests import get_quotes
 
 main = Blueprint('main', __name__)
 
@@ -13,5 +14,7 @@ def home():
 
 
 @main.route("/about")
-def about():
-    return render_template('about.html', title='About')
+
+def about():  
+    quotes = get_quotes()
+    return render_template('about.html', title='About', quotes=quotes)
